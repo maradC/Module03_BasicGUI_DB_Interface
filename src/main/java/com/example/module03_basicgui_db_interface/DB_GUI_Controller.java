@@ -1,5 +1,6 @@
 package com.example.module03_basicgui_db_interface;
 
+import db.ConnDbOps;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -41,6 +42,7 @@ public class DB_GUI_Controller implements Initializable {
     @FXML
     ImageView img_view;
 
+    private ConnDbOps db = new ConnDbOps();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,7 +54,12 @@ public class DB_GUI_Controller implements Initializable {
 
 
         tv.setItems(data);
+
+        db.connectToDatabase();
+        db.listAllUsers();
+        tv.setItems(db.intData);
     }
+
 
 
     @FXML
