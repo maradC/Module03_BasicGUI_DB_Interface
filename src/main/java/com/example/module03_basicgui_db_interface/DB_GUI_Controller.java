@@ -64,15 +64,16 @@ public class DB_GUI_Controller implements Initializable {
 
     @FXML
     protected void addNewRecord() {
+        String name = first_name.getText();
+        String lastName = last_name.getText();
+        String depart = department.getText();
+        String maj = major.getText();
+
+        db.insertUser(name, lastName, depart,maj,null);
+        clearForm();
+        tv.getItems().clear();
 
 
-        data.add(new Person(
-                data.size()+1,
-                first_name.getText(),
-                last_name.getText(),
-                department.getText(),
-                major.getText()
-        ));
     }
 
     @FXML
@@ -120,8 +121,6 @@ public class DB_GUI_Controller implements Initializable {
 
         }
     }
-
-
 
 
 
