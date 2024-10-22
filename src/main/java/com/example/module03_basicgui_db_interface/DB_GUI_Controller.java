@@ -116,7 +116,6 @@ public class DB_GUI_Controller implements Initializable {
        }
        tv.getItems().clear();
        db.listAllUsers();
-
     }
 
     @FXML
@@ -127,8 +126,6 @@ public class DB_GUI_Controller implements Initializable {
 
         }
     }
-
-
 
     @FXML
     protected void selectedItemTV(MouseEvent mouseEvent) {
