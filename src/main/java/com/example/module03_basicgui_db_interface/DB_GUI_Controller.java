@@ -72,16 +72,16 @@ public class DB_GUI_Controller implements Initializable {
         db.insertUser(name, lastName, depart,maj,null);
         clearForm();
         tv.getItems().clear();
-
+        tv.setItems(db.intData);
 
     }
 
     @FXML
     protected void clearForm() {
         first_name.clear();
-        last_name.setText("");
-        department.setText("");
-        major.setText("");
+        last_name.clear();
+        department.clear();
+        major.clear();
     }
 
     @FXML
@@ -93,25 +93,31 @@ public class DB_GUI_Controller implements Initializable {
     @FXML
     protected void editRecord() {
         Person p= tv.getSelectionModel().getSelectedItem();
-        int c=data.indexOf(p);
+        int c= db.intData.indexOf(p);
         Person p2= new Person();
         p2.setId(c+1);
         p2.setFirstName(first_name.getText());
         p2.setLastName(last_name.getText());
         p2.setDept(department.getText());
         p2.setMajor(major.getText());
-        data.remove(c);
-        data.add(c,p2);
-        tv.getSelectionModel().select(c);
+        db.deleteStudent(p.getId());
+        db.insertUser(p2.getFirstName(), p2.getLastName(), p2.getDept(), p2.getMajor(), null);
+        //tv.getSelectionModel().select(c);
+        tv.getItems().clear();
+        db.listAllUsers();
     }
 
     @FXML
     protected void deleteRecord() {
-        Person p= tv.getSelectionModel().getSelectedItem();
-        data.remove(p);
+        Person p = tv.getSelectionModel().getSelectedItem();
+       if( p != null){
+           data.remove(p);
+           db.deleteStudent(p.getId());
+       }
+       tv.getItems().clear();
+       db.listAllUsers();
+
     }
-
-
 
     @FXML
     protected void showImage() {
