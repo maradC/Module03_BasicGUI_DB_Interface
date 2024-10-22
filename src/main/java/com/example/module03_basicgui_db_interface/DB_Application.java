@@ -3,9 +3,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.animation.FadeTransition;
 import javafx.util.Duration;
+
+import java.io.File;
 import java.io.IOException;
 
 
@@ -51,7 +57,7 @@ public class DB_Application extends Application {
             fadeOut.setOnFinished(e -> {
 
 
-                Scene newScene = new Scene(newRoot,850, 560);
+                Scene newScene = new Scene(newRoot, 850, 560);
                 primaryStage.setScene(newScene);
 
             });
@@ -61,8 +67,45 @@ public class DB_Application extends Application {
             e.printStackTrace();
         }
     }
-    private void createMenu(){
 
-    }
+    private void createMenu() {
+        MenuBar menuBar = new MenuBar();
+        Menu dbMenu = new Menu("DB");
 
+        MenuItem addItem = new MenuItem("Add Person");
+        MenuItem editItem = new MenuItem("Edit Person");
+        MenuItem DeleteItem = new MenuItem("Delete Person");
+        MenuItem UploadPictureItem = new MenuItem("Upload Picture");
+
+            addItem.setOnAction(e -> openAddForm());
+            editItem.setOnAction(e -> openEditForm());
+            DeleteItem.setOnAction(e -> handleDelete());
+            UploadPictureItem.setOnAction(e -> uploadProfilePicture());
+
+            // Add items to Database Menu
+            dbMenu.getItems().addAll(addItem, editItem, DeleteItem, UploadPictureItem);
+
+        }
+        private void openAddForm() {
+            System.out.println("Open Add Form");
+
+        }
+
+        // Placeholder method to open the "Edit Person" form
+        private void openEditForm () {
+            System.out.println("Open Edit Form");
+
+        }
+
+
+        private void handleDelete(){
+            System.out.println("Delete Person");
+        }
+
+        // Upload profile picture method
+        private void uploadProfilePicture () {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
+            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+        }
 }
