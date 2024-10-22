@@ -97,15 +97,21 @@ public class DB_Application extends Application {
 
         }
 
-
         private void handleDelete(){
             System.out.println("Delete Person");
         }
 
-        // Upload profile picture method
-        private void uploadProfilePicture () {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
-            File selectedFile = fileChooser.showOpenDialog(primaryStage);
+    // Upload profile picture method
+    private void uploadProfilePicture() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        if (selectedFile != null) {
+            // Assuming you have a Person object, set the profile picture
+            Person person = new Person();
+            person.setProfilePicture(selectedFile.getAbsolutePath());
+            System.out.println("Profile picture set to: " + person.getProfilePicture());
         }
+    }
 }

@@ -53,8 +53,6 @@ public class DB_GUI_Controller implements Initializable {
         tv_major.setCellValueFactory(new PropertyValueFactory<>("major"));
 
 
-        tv.setItems(data);
-
         db.connectToDatabase();
         db.listAllUsers();
         tv.setItems(db.intData);

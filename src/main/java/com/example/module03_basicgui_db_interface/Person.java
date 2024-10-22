@@ -8,6 +8,7 @@ public class Person {
     private String lastName;
     private String dept;
     private String major;
+    private String profilePicture;
 
     public Person() {
     }
@@ -66,5 +67,13 @@ public class Person {
         this.dept = dept;
     }
 
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
 }
